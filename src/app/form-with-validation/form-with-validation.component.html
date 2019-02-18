@@ -1,0 +1,37 @@
+<div class="example-container">
+  <form [formGroup]='myForm'>
+    <div class="output">Value:{{myForm.value| json}}</div>
+    <hr>
+    <mat-form-field class="full">
+      <input matInput placeholder="email" formControlName='email' autocomplete="on">
+      <mat-error *ngIf='email.invalid && email.touched'>
+        Your email does not look right
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full">
+      <input matInput type="password" placeholder="password" formControlName='password'>
+      <mat-hint align='end'>Must have one letter, and one number</mat-hint>
+      <mat-error *ngIf='password.invalid && password.touched'>
+        That password sucks...
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full">
+        <input matInput type="password" placeholder="confirm password" formControlName='confirm'>
+        <span *ngIf="myForm.errors?.mismatchedFields" style="color:red">Passwords do not match!!!</span>
+     </mat-form-field>
+    <mat-form-field class="full">
+        <input matInput  placeholder="age" [value]="0" formControlName='age'>
+        <mat-error *ngIf='age.errors?.min && age.touched'>
+          {{ age.errors.min.actual }} is young to use this app!
+        </mat-error>
+        <mat-error *ngIf='age.errors?.max && age.touched'>
+            {{ age.errors.max.actual }} is too old to use this app!
+          </mat-error>
+      </mat-form-field>
+      <mat-checkbox formControlName='agree' color='primary'>Are you sure?</mat-checkbox>
+      <hr>
+  </form>
+  <button mat-raised-button [disabled]='myForm.invalid'  [ngStyle]="{width:'120px', alignSelf:'center', marginBottom:'25px'}" color='primary'>Submit</button>
+  <button mat-button (click)="onDisplay()" [ngStyle]="{width:'120px', align:'center'}">Display form!</button>
+
+</div>
