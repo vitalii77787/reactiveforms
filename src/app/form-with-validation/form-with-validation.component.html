@@ -12,7 +12,7 @@
       <input matInput type="password" placeholder="password" formControlName='password'>
       <mat-hint align='end'>Must have one letter, and one number</mat-hint>
       <mat-error *ngIf='password.invalid && password.touched'>
-        That password sucks...
+        That password is invalid...
       </mat-error>
     </mat-form-field>
     <mat-form-field class="full">
@@ -31,7 +31,6 @@
       <mat-checkbox formControlName='agree' color='primary'>Are you sure?</mat-checkbox>
       <hr>
   </form>
-  <button mat-raised-button [disabled]='myForm.invalid'  [ngStyle]="{width:'120px', alignSelf:'center', marginBottom:'25px'}" color='primary'>Submit</button>
-  <button mat-button (click)="onDisplay()" [ngStyle]="{width:'120px', align:'center'}">Display form!</button>
+  <button mat-raised-button [disabled]='myForm.invalid'  [ngStyle]="{width:'120px', alignSelf:'center', marginBottom:'25px'}" color='primary' (click)="onDisplay()">Submit</button>
 
 </div>

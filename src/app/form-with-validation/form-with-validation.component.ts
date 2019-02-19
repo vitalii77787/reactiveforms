@@ -16,7 +16,7 @@ export class FormWithValidationComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.pattern('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9]+)$')]],
       confirm: ['', [Validators.required]],
-      age: [null, [Validators.required, Validators.minLength(2), Validators.min(18), Validators.max(65)]],
+      age: [0, [Validators.required, Validators.minLength(2), Validators.min(18), Validators.max(65)]],
       agree: [false, [Validators.requiredTrue]]
     }, {validator: matchingFields('password', 'confirm')});
   }
@@ -35,6 +35,14 @@ export class FormWithValidationComponent implements OnInit {
   }
   get confirm() {
     return this.myForm.get('confirm');
+  }
+
+  onDisplay = () => {
+    console.log({
+      email: this.email.value,
+      password: this.password.value,
+      age: this.age.value
+    });
   }
 }
 function matchingFields(field1, field2) {
